@@ -1,0 +1,16 @@
+[
+  {
+    "id": "event1",
+    "title": "AI Hackathon",
+    "description": "Showcase your creative AI project photo.",
+    "theme": "Artificial Intelligence and Creativity",
+    "endDate": "2025-10-08T23:59:59"
+  },
+  {
+    "id": "event2",
+    "title": "Web Dev Quest",
+    "description": "Show off your creative web project!",
+    "theme": "Web Development Innovation",
+    "endDate": "2025-10-09T18:00:00"
+  }
+]

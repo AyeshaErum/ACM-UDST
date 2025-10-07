@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/style.css">
+  <title>Events - ACM UDST</title>
+</head>
+<body>
+<header>
+  <h1>ACM UDST Chapter</h1>
+  <nav>
+    <a href="/events">Events</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+<div class="container">
+  <h2>Welcome, <%= user.name %>!</h2>
+  <div class="grid">
+    <% events.forEach(e => { %>
+      <div class="card">
+        <h3><%= e.title %></h3>
+        <p><%= e.description %></p>
+        <p><b>Ends:</b> <%= new Date(e.endDate).toLocaleString() %></p>
+        <a class="btn" href="/quest/<%= e.id %>">Join Quest</a>
+        <a class="btn-secondary" href="/winners/<%= e.id %>">View Winners</a>
+      </div>
+    <% }) %>
+  </div>
+</div>
+</body>
+</html>

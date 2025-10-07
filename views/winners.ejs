@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/style.css">
+  <title>Winners - <%= event.title %></title>
+</head>
+<body>
+<header>
+  <h1>ACM UDST Chapter</h1>
+  <nav>
+    <a href="/events">Events</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</header>
+<div class="card center">
+  <h2><%= event.title %> Winners</h2>
+  <% if (pending) { %>
+    <p>Results will be announced after <b><%= new Date(event.endDate).toLocaleString() %></b></p>
+  <% } else if (winners.length === 0) { %>
+    <p>No winners yet.</p>
+  <% } else { %>
+    <ol>
+      <% winners.forEach(w => { %>
+        <li><b><%= w.user %></b> — <%= w.reason %></li>
+      <% }) %>
+    </ol>
+  <% } %>
+</div>
+</body>
+</html>

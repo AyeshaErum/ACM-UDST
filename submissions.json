@@ -1,0 +1,20 @@
+[
+  {
+    "eventId": "event1",
+    "user": "60304739",
+    "caption": "the weather channel for the day",
+    "timestamp": "2025-10-07T17:52:26.839Z"
+  },
+  {
+    "eventId": "event1",
+    "user": "123457",
+    "caption": "the weather channel for the day",
+    "timestamp": "2025-10-07T17:56:11.016Z"
+  },
+  {
+    "eventId": "event1",
+    "user": "60304739",
+    "caption": "the weather channel for the day",
+    "timestamp": "2025-10-07T17:56:31.244Z"
+  }
+]
