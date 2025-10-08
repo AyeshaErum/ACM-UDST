@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -8,6 +10,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
+
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +21,12 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+const studentProfileRoute = require("./studentProfile");
+app.use("/profile", studentProfileRoute);
+
+
+
 
 const upload = multer({ dest: "uploads/" });
 
@@ -37,17 +46,39 @@ function isAuthenticated(req, res, next) {
   res.redirect("/login");
 }
 
-app.get("/", (req, res) =>
-  req.session.user ? res.redirect("/events") : res.redirect("/login")
-);
+
+// Homepage route
+app.get("/", isAuthenticated, (req, res) => {
+  const leaderboard = [
+    { rank: 1, name: "Ayesha", points: 1420, avatar: "/avatars/girl1.jpg" },
+    { rank: 2, name: "Saima", points: 1165, avatar: "/avatars/girl2.jpg" },
+    { rank: 3, name: "Arlene", points: 980, avatar: "/avatars/guy1.jpg" },
+    { rank: 4, name: "Anisa", points: 875, avatar: "/avatars/guy2.jpg" }
+  ];
+
+  const maxPoints = Math.max(...leaderboard.map(u => u.points)) || 1;
+
+  // Add a width property for progress bar
+  leaderboard.forEach(u => u.width = Math.round((u.points / maxPoints) * 100));
+
+  res.render("home", { user: req.session.user, leaderboard });
+
+});
+
+
+
+//app.get("/", (req, res) =>
+//  req.session.user ? res.redirect("/events") : res.redirect("/login")
+//);
 
 app.get("/login", (req, res) => res.render("login"));
 app.post("/login", (req, res) => {
   const { id, password } = req.body;
   const user = accounts.find((a) => a.id === id && a.password === password);
-  if (!user) return res.render("login", { error: "Invalid credentials" });
+  if (!user) return res.render("login", { error: "Invalid credentials" || null });
+
   req.session.user = user;
-  res.redirect("/events");
+  res.redirect("/");
 });
 
 app.get("/signup", (req, res) => res.render("signup"));
@@ -159,6 +190,9 @@ Respond ONLY in JSON like this:
   } catch {
     res.status(500).send("Gemini error");
   }
+  
 });
+
+
 
 app.listen(3000, () => console.log("🚀 Running on http://localhost:3000"));

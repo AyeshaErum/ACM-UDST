@@ -7,6 +7,13 @@
   {
     "id": "123457",
     "name": "Mariya",
-    "password": "12345"
+    "birthdate": "2005-01-01",
+    "email": "Mariya@udst.edu.qu",
+    "password": "1234"
+  },
+  {
+    "id": "60304985",
+    "name": "Saima Nasrin",
+    "password": "saima123"
   }
 ]
