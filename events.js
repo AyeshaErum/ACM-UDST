@@ -11,6 +11,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
+app.use("/avatars", express.static("avatars")); // ✅ serve avatar images
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,8 +53,8 @@ app.get("/", isAuthenticated, (req, res) => {
   const leaderboard = [
     { rank: 1, name: "Ayesha", points: 1420, avatar: "/avatars/girl1.jpg" },
     { rank: 2, name: "Saima", points: 1165, avatar: "/avatars/girl2.jpg" },
-    { rank: 3, name: "Arlene", points: 980, avatar: "/avatars/guy1.jpg" },
-    { rank: 4, name: "Anisa", points: 875, avatar: "/avatars/guy2.jpg" }
+    { rank: 3, name: "Arlene", points: 980, avatar: "/avatars/girl3.jpg" },
+    { rank: 4, name: "Anisa", points: 875, avatar: "/avatars/girl4.jpg" }
   ];
 
   const maxPoints = Math.max(...leaderboard.map(u => u.points)) || 1;
